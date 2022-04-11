@@ -81,3 +81,99 @@ const menu = [
     desc: `Red bean paste dessert, serving with honey.`,
   },
 ];
+
+
+const filterButtons = document.querySelector('.btn-container')
+const menuItems = document.querySelector('.section-center')
+
+listAllFoods();
+
+
+const createButtons = (btnName) => {
+  let btn =<button tpye="button" id="${btnName}" class="btn btn-outline-dark btn-item">${btnName} </button>
+  return btn;
+}
+
+const addButtonsToUI = () => {
+  btnContainer.innerHTML =
+    createButton("All") +
+    " " +
+    createButton("Korea") +
+    " " +
+    createButton("Japan") +
+    " " +
+    createButton("China");
+};
+addButtonsToUI();
+
+const btnAll = document
+  .querySelector("#All")
+  .addEventListener("click", listAllFoods);
+const btnKorean = document
+  .querySelector("#Korea")
+  .addEventListener("click", listKoreanFoods);
+const btnJapan = document
+  .querySelector("#Japan")
+  .addEventListener("click", listJapanFoods);
+const btnChina = document
+  .querySelector("#China")
+  .addEventListener("click", listChinaFoods);
+
+
+function listAllFoods() {
+  let allMenu = "";
+  menu.map((x) => {
+    allMenu += createObject(x);
+  });
+  menuContainer.innerHTML = allMenu;
+}
+
+function listKoreanFoods() {
+  let allMenu = "";
+  menu.map((x) => {
+    if (x.category == "Korea") {
+      allMenu += createObject(x);
+    }
+  });
+  menuContainer.innerHTML = allMenu;
+
+}
+function listJapanFoods() {
+  let allMenu = "";
+  menu.map((x) => {
+    if (x.category == "Japan") {
+      allMenu += createObject(x);
+    }
+  });
+  menuContainer.innerHTML = allMenu;
+}
+
+
+function listChinaFoods() {
+  let allMenu = "";
+  menu.map((x) => {
+    if (x.category == "China") {
+      allMenu += createObject(x);
+    }
+  });
+  menuContainer.innerHTML = allMenu;
+}
+
+
+function createObject(food) {
+  let item = `
+  <div class="menu-items col-lg-6 col-sm-12">
+            <img src="${food.img}" alt="${food.title}" ramen="" class="photo">
+            <div class="menu-info">
+              <div class="menu-title">
+                <h4>${food.title} Ramen</h4>
+                <h4 class="price">${food.price}</h4>
+              </div>
+              <div class="menu-text">
+                ${food.desc}
+              </div>
+            </div>
+          </div>
+  `;
+  return item;
+}
